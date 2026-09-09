@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'app_state.dart';
-import 'extras.dart';
+import 'login_screen.dart';
 import 'theme.dart';
 
 void main() {
@@ -47,7 +47,7 @@ class _SplashGateState extends State<SplashGate> {
 
   @override
   Widget build(BuildContext context) {
-    if (done) return const HomeShell();
+    if (done) return const LoginScreen();
     return Scaffold(
       backgroundColor: const Color(0xFF08111F),
       body: Center(
@@ -55,7 +55,7 @@ class _SplashGateState extends State<SplashGate> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
-              'assets/mascot/kalasagicon.png',
+              'assets/mascot/kalasagicon-transparent.png',
               width: 180,
               height: 180,
             ),

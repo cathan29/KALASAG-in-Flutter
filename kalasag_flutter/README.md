@@ -4,6 +4,8 @@ This folder is the standalone Flutter migration of the original React Native app
 
 ## Included
 
+- Modern demo login screen with email/password validation and password visibility control
+- Google and Facebook sign-in buttons presented as coming-soon features
 - Five-tab Material 3 interface: Weather, Alerts, Radar, Ready, and SOS
 - GPS permission, reverse-geocoded location, Open-Meteo multi-model forecast
 - Live Philippine-area alerts from GDACS, USGS, and NASA EONET
@@ -36,6 +38,7 @@ The generated debug APK is at `build/app/outputs/flutter-apk/app-debug.apk`.
 
 ## Notes
 
+- Email/password sign-in is currently a local demo entry flow and does not authenticate against a backend. Google and Facebook authentication are not implemented yet.
 - The Android wrapper uses Gradle 9.1 because this development machine currently uses Java 25.
 - Alert preferences are persisted. OS background/push delivery still requires a production notification provider or backend; live alerts refresh when the app starts or the user refreshes.
 - Windy is embedded through its public map page, matching the network-dependent radar behavior of the original app.
