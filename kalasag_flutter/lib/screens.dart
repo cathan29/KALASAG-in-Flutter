@@ -543,7 +543,14 @@ class AlertDetailScreen extends StatelessWidget {
   final AlertItem alert;
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('Advisory details')),
+    appBar: AppBar(
+      leading: IconButton(
+        tooltip: 'Back to alerts',
+        icon: const Icon(Icons.arrow_back),
+        onPressed: () => Navigator.pop(context),
+      ),
+      title: const Text('Advisory details'),
+    ),
     body: ListView(
       padding: const EdgeInsets.all(18),
       children: [

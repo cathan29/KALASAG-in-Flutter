@@ -170,6 +170,11 @@ class WeatherService {
   }
 }
 
+const bool liveAlertApisEnabled = bool.fromEnvironment(
+  'ENABLE_LIVE_ALERT_APIS',
+  defaultValue: false,
+);
+
 class AlertService {
   static bool _inside(GeoPoint? p) =>
       p != null &&
@@ -178,6 +183,8 @@ class AlertService {
       p.longitude >= 115 &&
       p.longitude <= 130;
   Future<List<AlertItem>> fetch() async {
+    if (!liveAlertApisEnabled) return _offlineDemoAlerts();
+
     final results = await Future.wait(
       [
         _gdacs(),
@@ -192,6 +199,38 @@ class AlertService {
         .toList();
     all.sort((a, b) => b.publishedAt.compareTo(a.publishedAt));
     return all;
+  }
+
+  List<AlertItem> _offlineDemoAlerts() {
+    final now = DateTime.now();
+    return [
+      AlertItem(
+        id: 'demo-weather-pangasinan',
+        title: 'Demo Heavy Rainfall Advisory',
+        description:
+            'Offline demonstration data for navigation and data-passing. '
+            'This is not a current emergency advisory.',
+        publishedAt: now.subtract(const Duration(minutes: 20)),
+        severity: 'High',
+        source: 'OFFLINE DEMO',
+        category: 'weather',
+        coordinates: const GeoPoint(15.8949, 120.2863, 'Pangasinan'),
+        affectedAreas: const ['Pangasinan'],
+      ),
+      AlertItem(
+        id: 'demo-earthquake-luzon',
+        title: 'Demo Earthquake Information',
+        description:
+            'Offline demonstration data for the Kalasag alert-details screen. '
+            'This is not a live earthquake report.',
+        publishedAt: now.subtract(const Duration(hours: 2)),
+        severity: 'Medium',
+        source: 'OFFLINE DEMO',
+        category: 'earthquake',
+        coordinates: const GeoPoint(16.4023, 120.5960, 'Northern Luzon'),
+        affectedAreas: const ['Northern Luzon'],
+      ),
+    ];
   }
 
   Future<List<AlertItem>> _gdacs() async {

@@ -207,6 +207,11 @@ class _SheltersScreenState extends State<SheltersScreen> {
         .toList();
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          tooltip: 'Back to readiness',
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: const Text('Evacuation centers'),
         actions: [
           IconButton(
@@ -325,7 +330,14 @@ class NotificationSettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.watch<AppState>();
     return Scaffold(
-      appBar: AppBar(title: const Text('Alert notifications')),
+      appBar: AppBar(
+        leading: IconButton(
+          tooltip: 'Back to alerts',
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: const Text('Alert notifications'),
+      ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [

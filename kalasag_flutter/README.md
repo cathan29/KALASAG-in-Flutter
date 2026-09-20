@@ -8,7 +8,7 @@ This folder is the standalone Flutter migration of the original React Native app
 - Google and Facebook sign-in buttons presented as coming-soon features
 - Five-tab Material 3 interface: Weather, Alerts, Radar, Ready, and SOS
 - GPS permission, reverse-geocoded location, Open-Meteo multi-model forecast
-- Live Philippine-area alerts from GDACS, USGS, and NASA EONET
+- Offline demo alerts by default, with optional live GDACS, USGS, and NASA EONET providers
 - Alert filtering, detail pages, and official-source links
 - Embedded Windy rain, wind, temperature, and cloud layers
 - Persistent saved places, go-bag checklist, family plan, and alert preferences
@@ -26,6 +26,12 @@ flutter run
 
 Choose an Android emulator or USB-connected Android device when prompted. Location and network access are required for live weather, radar, alerts, and shelter search. Emergency data and readiness plans work locally.
 
+Live alert API requests are temporarily disabled by default. The Alerts screen uses clearly labeled offline demo records, so navigation and data-passing can be demonstrated without waiting for network providers. To enable the live providers for a run:
+
+```powershell
+flutter run --dart-define=ENABLE_LIVE_ALERT_APIS=true
+```
+
 ## Validate and build
 
 ```powershell
@@ -40,5 +46,5 @@ The generated debug APK is at `build/app/outputs/flutter-apk/app-debug.apk`.
 
 - Email/password sign-in is currently a local demo entry flow and does not authenticate against a backend. Google and Facebook authentication are not implemented yet.
 - The Android wrapper uses Gradle 9.1 because this development machine currently uses Java 25.
-- Alert preferences are persisted. OS background/push delivery still requires a production notification provider or backend; live alerts refresh when the app starts or the user refreshes.
+- Alert preferences are persisted. OS background/push delivery still requires a production notification provider or backend. Live alert refresh is available only when `ENABLE_LIVE_ALERT_APIS=true` is supplied.
 - Windy is embedded through its public map page, matching the network-dependent radar behavior of the original app.
