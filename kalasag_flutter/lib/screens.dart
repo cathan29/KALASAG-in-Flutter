@@ -8,6 +8,7 @@ import 'app_state.dart';
 import 'models.dart';
 import 'theme.dart';
 import 'extras.dart';
+import 'api_activity_screen.dart';
 
 String value(dynamic v, [String unit = '']) =>
     v is num ? '${v.round()}$unit' : 'N/A';
@@ -122,11 +123,25 @@ class WeatherScreen extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          Text(
-            'Weather',
-            style: Theme.of(
-              context,
-            ).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'Weather',
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              IconButton(
+                tooltip: 'API integration evidence',
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const ApiActivityScreen()),
+                ),
+                icon: const Icon(Icons.api),
+              ),
+            ],
           ),
           Row(
             children: [
