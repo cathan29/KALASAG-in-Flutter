@@ -8,6 +8,7 @@ This folder is the standalone Flutter migration of the original React Native app
 - Google and Facebook sign-in buttons presented as coming-soon features
 - Five-tab Material 3 interface: Weather, Alerts, Radar, Ready, and SOS
 - GPS permission, reverse-geocoded location, Open-Meteo multi-model forecast
+- API evidence screen with live GET, HTTP status, parsed data, and handled failure state
 - Offline demo alerts by default, with optional live GDACS, USGS, and NASA EONET providers
 - Alert filtering, detail pages, and official-source links
 - Embedded Windy rain, wind, temperature, and cloud layers
